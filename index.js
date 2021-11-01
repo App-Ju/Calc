@@ -1,4 +1,14 @@
 // 'use strict'
-const button = document.querySelector('#b7')
+const buttonNum = document.querySelector('#keyboard')
+const input = document.querySelector('input')
 
-console.log(button)
+// document.querySelectorAll('.buttonNum').setAttribute('data-num', 'true')
+buttonNum.addEventListener('click', buttonClick)
+
+function buttonClick(event) {
+    event.target.dataset.num ?
+        input.value += event.target.textContent :
+        console.log('no')
+}
+
+console.log(buttonNum)
