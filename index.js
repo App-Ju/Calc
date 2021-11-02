@@ -20,8 +20,19 @@ function buttonClick(event) {
     }
 
     if (event.target.dataset.plus) {
+        localStorage.removeItem('Number*')
+        localStorage.removeItem('Number/')
+        localStorage.removeItem('Number-')
         localStorage.setItem('Number', input.value)
         plus()
+    }
+
+    if (event.target.dataset.minus) {
+        localStorage.removeItem('Number*')
+        localStorage.removeItem('Number/')
+        localStorage.removeItem('Number+')
+        localStorage.setItem('Number', input.value)
+        minus()
     }
 }
 
@@ -35,6 +46,20 @@ function plus() {
     } else if (localStorage.getItem('Number+') !== null && input.value !== "") {
         input.value = +input.value + +localStorage.getItem('Number+')
         localStorage.setItem('Number+', input.value)
-        localStorage.removeItem('Number')//localStorage.clear()
+        localStorage.removeItem('Number')
+    }
+}
+
+function minus() {
+    document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
+    if (localStorage.getItem('Number-') === null && input.value !== "") {
+        localStorage.setItem('Number-', input.value)
+        localStorage.removeItem('Number')
+        input.value = ''
+
+    } else if (localStorage.getItem('Number-') !== null && input.value !== "") {
+        input.value = +localStorage.getItem('Number-') - +input.value
+        localStorage.setItem('Number-', input.value)
+        localStorage.removeItem('Number')
     }
 }
