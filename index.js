@@ -14,41 +14,59 @@ function buttonClick(event) {
         input.value += event.target.textContent
     }
 
+    if (event.target.dataset.equals) {
+        equals()
+    }
+
     if (event.target.dataset.ac) {
         input.value = ''
         localStorage.clear()
     }
 
     if (event.target.dataset.multiply) {
-        localStorage.removeItem('Number/')
-        localStorage.removeItem('Number+')
-        localStorage.removeItem('Number-')
+        equals()
         localStorage.setItem('Number', input.value)
         multiply()
     }
 
     if (event.target.dataset.divide) {
-        localStorage.removeItem('Number*')
-        localStorage.removeItem('Number+')
-        localStorage.removeItem('Number-')
+        equals()
         localStorage.setItem('Number', input.value)
         divide()
     }
 
     if (event.target.dataset.plus) {
-        localStorage.removeItem('Number*')
-        localStorage.removeItem('Number/')
-        localStorage.removeItem('Number-')
+        equals()
         localStorage.setItem('Number', input.value)
         plus()
     }
 
     if (event.target.dataset.minus) {
-        localStorage.removeItem('Number*')
-        localStorage.removeItem('Number/')
-        localStorage.removeItem('Number+')
+        equals()
         localStorage.setItem('Number', input.value)
         minus()
+    }
+}
+
+function equals() {
+    if (localStorage.getItem('Number*') !== null) {
+        input.value = +localStorage.getItem('Number*') * +input.value
+        localStorage.clear()
+    }
+
+    if (localStorage.getItem('Number/') !== null) {
+        input.value = +localStorage.getItem('Number/') / +input.value
+        localStorage.clear()
+    }
+
+    if (localStorage.getItem('Number+') !== null) {
+        input.value = +localStorage.getItem('Number+') + +input.value
+        localStorage.clear()
+    }
+
+    if (localStorage.getItem('Number-') !== null) {
+        input.value = +localStorage.getItem('Number-') - +input.value
+        localStorage.clear()
     }
 }
 
@@ -60,9 +78,8 @@ function multiply() {
         input.value = ''
 
     } else if (localStorage.getItem('Number*') !== null && input.value !== "") {
-        input.value = +localStorage.getItem('Number*') * +input.value
+        equals()
         localStorage.setItem('Number*', input.value)
-        localStorage.removeItem('Number')
     }
 }
 
@@ -74,9 +91,8 @@ function divide() {
         input.value = ''
 
     } else if (localStorage.getItem('Number/') !== null && input.value !== "") {
-        input.value = +localStorage.getItem('Number/') / +input.value
+        equals()
         localStorage.setItem('Number/', input.value)
-        localStorage.removeItem('Number')
     }
 }
 
@@ -88,9 +104,8 @@ function plus() {
         input.value = ''
 
     } else if (localStorage.getItem('Number+') !== null && input.value !== "") {
-        input.value = +localStorage.getItem('Number+') + +input.value
+        equals()
         localStorage.setItem('Number+', input.value)
-        localStorage.removeItem('Number')
     }
 }
 
@@ -102,9 +117,8 @@ function minus() {
         input.value = ''
 
     } else if (localStorage.getItem('Number-') !== null && input.value !== "") {
-        input.value = +localStorage.getItem('Number-') - +input.value
+        equals()
         localStorage.setItem('Number-', input.value)
-        localStorage.removeItem('Number')
     }
 }
 
