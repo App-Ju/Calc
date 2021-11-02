@@ -1,20 +1,39 @@
 'use strict'
 
-const buttonNum = document.querySelector('#keyboard')
+const key = document.querySelector('#keyboard')
 const input = document.querySelector('input')
 
-buttonNum.addEventListener('click', buttonClick)
+key.addEventListener('click', buttonClick)
 
 function buttonClick(event) {
     if (event.target.dataset.num) {
         input.value += event.target.textContent
-    } localStorage.setItem('Number', 'input.value')
+    }
 
     if (event.target.dataset.ac) {
         input.value = ''
-        localStorage.removeItem('Number')
+        localStorage.clear()
+    }
+
+    if (event.target.dataset.plus) {
+        localStorage.setItem('Number', input.value)
+        plus()
     }
 }
 
+function plus() {
 
-console.log(buttonNum)
+    if (localStorage.getItem('Number+') === null && input.value !== "") {
+        localStorage.setItem('Number+', input.value)
+        localStorage.removeItem('Number')
+        input.value = ''
+
+    } else if (localStorage.getItem('Number+') !== null && input.value !== "") {
+        input.value = +input.value + +localStorage.getItem('Number+')
+        localStorage.setItem('Number+', localStorage.getItem('Number'))
+        localStorage.removeItem('Number')//localStorage.clear()
+
+    // } else if (localStorage.getItem('Number+') !== null && input.value === "") {
+    //     localStorage.clear()
+    }
+}
