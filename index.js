@@ -6,6 +6,7 @@ const input = document.querySelector('input')
 key.addEventListener('click', buttonClick)
 
 function buttonClick(event) {
+
     if (event.target.dataset.num && event.target.dataset.run) {
         input.value = ''
         document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', ''))
@@ -52,14 +53,16 @@ function buttonClick(event) {
             input.value = `-${input.value}`
 
         } else if (input.value < 0) {
-            let x = [...`${input.value}`].filter(e => e !== '-').join('')
-            input.value = Number(x)
-            console.log(x)
+            input.value = [...`${input.value}`].filter(e => e !== '-').join('')
         }
     }
 
     if (event.target.dataset.percent) {
         percent()
+    }
+
+    if (event.target.dataset.del) {
+        input.value = [...`${input.value}`].slice(0, [].length-1).join('')
     }
 }
 
@@ -151,6 +154,6 @@ function percent() {
         input.value = +localStorage.getItem('Number-') /100 * +input.value
 
     } else {
-        input.value = +input.value / 100
+        input.value = input.value / 100
     }
 }
