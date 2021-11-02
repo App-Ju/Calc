@@ -46,6 +46,17 @@ function buttonClick(event) {
         localStorage.setItem('Number', input.value)
         minus()
     }
+
+    if (event.target.dataset.change) {
+        if (input.value > 0) {
+            input.value = `-${input.value}`
+
+        } else if (input.value < 0) {
+            let x = [...`${input.value}`].filter(e => e !== '-').join('')
+            input.value = Number(x)
+            console.log(x)
+        }
+    }
 }
 
 function equals() {
