@@ -19,6 +19,22 @@ function buttonClick(event) {
         localStorage.clear()
     }
 
+    if (event.target.dataset.multiply) {
+        localStorage.removeItem('Number/')
+        localStorage.removeItem('Number+')
+        localStorage.removeItem('Number-')
+        localStorage.setItem('Number', input.value)
+        multiply()
+    }
+
+    if (event.target.dataset.divide) {
+        localStorage.removeItem('Number*')
+        localStorage.removeItem('Number+')
+        localStorage.removeItem('Number-')
+        localStorage.setItem('Number', input.value)
+        divide()
+    }
+
     if (event.target.dataset.plus) {
         localStorage.removeItem('Number*')
         localStorage.removeItem('Number/')
@@ -36,6 +52,34 @@ function buttonClick(event) {
     }
 }
 
+function multiply() {
+    document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
+    if (localStorage.getItem('Number*') === null && input.value !== "") {
+        localStorage.setItem('Number*', input.value)
+        localStorage.removeItem('Number')
+        input.value = ''
+
+    } else if (localStorage.getItem('Number*') !== null && input.value !== "") {
+        input.value = +localStorage.getItem('Number*') * +input.value
+        localStorage.setItem('Number*', input.value)
+        localStorage.removeItem('Number')
+    }
+}
+
+function divide() {
+    document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
+    if (localStorage.getItem('Number/') === null && input.value !== "") {
+        localStorage.setItem('Number/', input.value)
+        localStorage.removeItem('Number')
+        input.value = ''
+
+    } else if (localStorage.getItem('Number/') !== null && input.value !== "") {
+        input.value = +localStorage.getItem('Number/') / +input.value
+        localStorage.setItem('Number/', input.value)
+        localStorage.removeItem('Number')
+    }
+}
+
 function plus() {
     document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
     if (localStorage.getItem('Number+') === null && input.value !== "") {
@@ -44,7 +88,7 @@ function plus() {
         input.value = ''
 
     } else if (localStorage.getItem('Number+') !== null && input.value !== "") {
-        input.value = +input.value + +localStorage.getItem('Number+')
+        input.value = +localStorage.getItem('Number+') + +input.value
         localStorage.setItem('Number+', input.value)
         localStorage.removeItem('Number')
     }
@@ -63,3 +107,4 @@ function minus() {
         localStorage.removeItem('Number')
     }
 }
+
