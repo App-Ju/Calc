@@ -57,6 +57,10 @@ function buttonClick(event) {
             console.log(x)
         }
     }
+
+    if (event.target.dataset.percent) {
+        percent()
+    }
 }
 
 function equals() {
@@ -133,3 +137,20 @@ function minus() {
     }
 }
 
+function percent() {
+    if (localStorage.getItem('Number*') !== null) {
+        input.value = +localStorage.getItem('Number*') /100 * +input.value
+
+    } else if (localStorage.getItem('Number/') !== null) {
+        input.value = +localStorage.getItem('Number/') /100 * +input.value
+
+    } else if (localStorage.getItem('Number+') !== null) {
+        input.value = +localStorage.getItem('Number+') /100 * +input.value
+
+    } else if (localStorage.getItem('Number-') !== null) {
+        input.value = +localStorage.getItem('Number-') /100 * +input.value
+
+    } else {
+        input.value = +input.value / 100
+    }
+}
