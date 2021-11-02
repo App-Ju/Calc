@@ -6,7 +6,11 @@ const input = document.querySelector('input')
 key.addEventListener('click', buttonClick)
 
 function buttonClick(event) {
-    if (event.target.dataset.num) {
+    if (event.target.dataset.num && event.target.dataset.run) {
+        input.value = ''
+        document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', ''))
+        input.value += event.target.textContent
+    } else if (event.target.dataset.num) {
         input.value += event.target.textContent
     }
 
@@ -22,7 +26,7 @@ function buttonClick(event) {
 }
 
 function plus() {
-
+    document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
     if (localStorage.getItem('Number+') === null && input.value !== "") {
         localStorage.setItem('Number+', input.value)
         localStorage.removeItem('Number')
@@ -30,10 +34,7 @@ function plus() {
 
     } else if (localStorage.getItem('Number+') !== null && input.value !== "") {
         input.value = +input.value + +localStorage.getItem('Number+')
-        localStorage.setItem('Number+', localStorage.getItem('Number'))
+        localStorage.setItem('Number+', input.value)
         localStorage.removeItem('Number')//localStorage.clear()
-
-    // } else if (localStorage.getItem('Number+') !== null && input.value === "") {
-    //     localStorage.clear()
     }
 }
