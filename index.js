@@ -21,30 +21,30 @@ function buttonClick(event) {
 
     if (event.target.dataset.ac) {
         input.value = ''
-        localStorage.clear()
+        sessionStorage.clear()
     }
 
     if (event.target.dataset.multiply) {
         equals()
-        localStorage.setItem('Number', input.value)
+        sessionStorage.setItem('Number', input.value)
         multiply()
     }
 
     if (event.target.dataset.divide) {
         equals()
-        localStorage.setItem('Number', input.value)
+        sessionStorage.setItem('Number', input.value)
         divide()
     }
 
     if (event.target.dataset.plus) {
         equals()
-        localStorage.setItem('Number', input.value)
+        sessionStorage.setItem('Number', input.value)
         plus()
     }
 
     if (event.target.dataset.minus) {
         equals()
-        localStorage.setItem('Number', input.value)
+        sessionStorage.setItem('Number', input.value)
         minus()
     }
 
@@ -67,91 +67,91 @@ function buttonClick(event) {
 }
 
 function equals() {
-    if (localStorage.getItem('Number*') !== null) {
-        input.value = +localStorage.getItem('Number*') * +input.value
-        localStorage.clear()
+    if (sessionStorage.getItem('Number*') !== null) {
+        input.value = +sessionStorage.getItem('Number*') * +input.value
+        sessionStorage.clear()
     }
 
-    if (localStorage.getItem('Number/') !== null) {
-        input.value = +localStorage.getItem('Number/') / +input.value
-        localStorage.clear()
+    if (sessionStorage.getItem('Number/') !== null) {
+        input.value = +sessionStorage.getItem('Number/') / +input.value
+        sessionStorage.clear()
     }
 
-    if (localStorage.getItem('Number+') !== null) {
-        input.value = +localStorage.getItem('Number+') + +input.value
-        localStorage.clear()
+    if (sessionStorage.getItem('Number+') !== null) {
+        input.value = +sessionStorage.getItem('Number+') + +input.value
+        sessionStorage.clear()
     }
 
-    if (localStorage.getItem('Number-') !== null) {
-        input.value = +localStorage.getItem('Number-') - +input.value
-        localStorage.clear()
+    if (sessionStorage.getItem('Number-') !== null) {
+        input.value = +sessionStorage.getItem('Number-') - +input.value
+        sessionStorage.clear()
     }
 }
 
 function multiply() {
     document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
-    if (localStorage.getItem('Number*') === null && input.value !== "") {
-        localStorage.setItem('Number*', input.value)
-        localStorage.removeItem('Number')
+    if (sessionStorage.getItem('Number*') === null && input.value !== "") {
+        sessionStorage.setItem('Number*', input.value)
+        sessionStorage.removeItem('Number')
         input.value = ''
 
-    } else if (localStorage.getItem('Number*') !== null && input.value !== "") {
+    } else if (sessionStorage.getItem('Number*') !== null && input.value !== "") {
         equals()
-        localStorage.setItem('Number*', input.value)
+        sessionStorage.setItem('Number*', input.value)
     }
 }
 
 function divide() {
     document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
-    if (localStorage.getItem('Number/') === null && input.value !== "") {
-        localStorage.setItem('Number/', input.value)
-        localStorage.removeItem('Number')
+    if (sessionStorage.getItem('Number/') === null && input.value !== "") {
+        sessionStorage.setItem('Number/', input.value)
+        sessionStorage.removeItem('Number')
         input.value = ''
 
-    } else if (localStorage.getItem('Number/') !== null && input.value !== "") {
+    } else if (sessionStorage.getItem('Number/') !== null && input.value !== "") {
         equals()
-        localStorage.setItem('Number/', input.value)
+        sessionStorage.setItem('Number/', input.value)
     }
 }
 
 function plus() {
     document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
-    if (localStorage.getItem('Number+') === null && input.value !== "") {
-        localStorage.setItem('Number+', input.value)
-        localStorage.removeItem('Number')
+    if (sessionStorage.getItem('Number+') === null && input.value !== "") {
+        sessionStorage.setItem('Number+', input.value)
+        sessionStorage.removeItem('Number')
         input.value = ''
 
-    } else if (localStorage.getItem('Number+') !== null && input.value !== "") {
+    } else if (sessionStorage.getItem('Number+') !== null && input.value !== "") {
         equals()
-        localStorage.setItem('Number+', input.value)
+        sessionStorage.setItem('Number+', input.value)
     }
 }
 
 function minus() {
     document.querySelectorAll('.buttonNum').forEach(e => e.setAttribute('data-run', 'true'))
-    if (localStorage.getItem('Number-') === null && input.value !== "") {
-        localStorage.setItem('Number-', input.value)
-        localStorage.removeItem('Number')
+    if (sessionStorage.getItem('Number-') === null && input.value !== "") {
+        sessionStorage.setItem('Number-', input.value)
+        sessionStorage.removeItem('Number')
         input.value = ''
 
-    } else if (localStorage.getItem('Number-') !== null && input.value !== "") {
+    } else if (sessionStorage.getItem('Number-') !== null && input.value !== "") {
         equals()
-        localStorage.setItem('Number-', input.value)
+        sessionStorage.setItem('Number-', input.value)
     }
 }
 
 function percent() {
-    if (localStorage.getItem('Number*') !== null) {
-        input.value = +localStorage.getItem('Number*') /100 * +input.value
+    if (sessionStorage.getItem('Number*') !== null) {
+        input.value = +sessionStorage.getItem('Number*') /100 * +input.value
 
-    } else if (localStorage.getItem('Number/') !== null) {
-        input.value = +localStorage.getItem('Number/') /100 * +input.value
+    } else if (sessionStorage.getItem('Number/') !== null) {
+        input.value = +sessionStorage.getItem('Number/') /100 * +input.value
 
-    } else if (localStorage.getItem('Number+') !== null) {
-        input.value = +localStorage.getItem('Number+') /100 * +input.value
+    } else if (sessionStorage.getItem('Number+') !== null) {
+        input.value = +sessionStorage.getItem('Number+') /100 * +input.value
 
-    } else if (localStorage.getItem('Number-') !== null) {
-        input.value = +localStorage.getItem('Number-') /100 * +input.value
+    } else if (sessionStorage.getItem('Number-') !== null) {
+        input.value = +sessionStorage.getItem('Number-') /100 * +input.value
 
     } else {
         input.value = input.value / 100
