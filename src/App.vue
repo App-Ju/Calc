@@ -7,7 +7,7 @@
     </label>
     <div id="keyboard">
       <div class="line">
-        <button >AC</button>
+        <button @click="clear">AC</button>
         <button >+/-</button>
         <button >%</button>
         <button >/</button>
@@ -16,7 +16,7 @@
         <button @click="addNumber">7</button>
         <button @click="addNumber">8</button>
         <button @click="addNumber">9</button>
-        <button >*</button>
+        <button @click="multiply">*</button>
       </div>
       <div class="line">
         <button @click="addNumber">4</button>
@@ -46,13 +46,27 @@ export default {
   name: 'App',
   data () {
     return {
-      inputValue: ''
+      inputValue: '',
+      numberMultiply: '',
+      numberDivide: '',
+      numberPlus: '',
+      numberMinus: ''
     }
   },
   methods: {
     addNumber (event) {
       this.inputValue += event.target.textContent
+    },
+
+    clear () {
+      this.inputValue = ''
     }
+  },
+
+  computed: {
+  },
+
+  watch: {
   }
 }
 </script>
