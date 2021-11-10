@@ -33,7 +33,7 @@
       <div class="line">
         <button @click="backspace">&lt;</button>
         <button @click="addNumber">0</button>
-        <button data-comma="true">,</button>
+        <button @click="addNumber">.</button>
         <button @click="equals">=</button>
       </div>
     </div>
@@ -56,12 +56,9 @@ export default {
   },
   methods: {
     addNumber(event) {
-      this.numberMultiply !== null ? this.inputValue = ''
-          : this.numberDivide !== null ? this.inputValue = ''
-          : this.numberPlus !== null ? this.inputValue = ''
-              : this.numberMinus !== null ? this.inputValue = ''
-                  : this.checkEquals > 0 ? this.inputValue = ''
-                      : 'do nothing'
+      if (this.checkEquals > 0) {
+        this.inputValue = ''
+      }
       this.inputValue += event.target.textContent
       this.checkEquals = 0
     },
