@@ -31,7 +31,7 @@
         <button @click="plus">+</button>
       </div>
       <div class="line">
-        <button data-del="true">&lt;</button>
+        <button @click="backspace">&lt;</button>
         <button @click="addNumber">0</button>
         <button data-comma="true">,</button>
         <button @click="equals">=</button>
@@ -132,6 +132,10 @@ export default {
         : this.numberPlus !== null ? this.inputValue = +this.numberPlus /100 * +this.inputValue
         : this.numberMinus !== null ? this.inputValue = +this.numberMinus /100 * +this.inputValue
         : this.inputValue = this.inputValue / 100
+    },
+
+    backspace () {
+      this.inputValue = [...`${this.inputValue}`].slice(0, [].length-1).join('')
     }
   }
 }
