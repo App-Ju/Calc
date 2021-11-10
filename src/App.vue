@@ -8,7 +8,7 @@
     <div id="keyboard">
       <div class="line">
         <button @click="clear">AC</button>
-        <button>+/-</button>
+        <button @click="changeSign">+/-</button>
         <button>%</button>
         <button @click="divide">/</button>
       </div>
@@ -61,7 +61,7 @@ export default {
           : this.numberPlus !== null ? this.inputValue = ''
               : this.numberMinus !== null ? this.inputValue = ''
                   : this.checkEquals > 0 ? this.inputValue = ''
-                      : 'nothing'
+                      : 'do nothing'
       this.inputValue += event.target.textContent
       this.checkEquals = 0
     },
@@ -115,6 +115,15 @@ export default {
         this.numberMinus = null
       }
       this.checkEquals++
+    },
+
+    changeSign () {
+      if (this.inputValue > 0) {
+        this.inputValue = `-${this.inputValue}`
+
+      } else if (this.inputValue < 0) {
+        this.inputValue = [...`${this.inputValue}`].filter(e => e !== '-').join('')
+      }
     }
   },
 }
