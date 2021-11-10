@@ -7,7 +7,7 @@
     </label>
     <div id="keyboard">
       <div class="line">
-        <button @click="clear">AC</button>
+        <button @click="clear"> {{ clearButton }}</button>
         <button @click="changeSign">+/-</button>
         <button @click="percent">%</button>
         <button @click="divide">/</button>
@@ -33,7 +33,7 @@
       <div class="line">
         <button @click="backspace">&lt;</button>
         <button @click="addNumber">0</button>
-        <button @click="addNumber">.</button>
+        <button @click="comma">.</button>
         <button @click="equals">=</button>
       </div>
     </div>
@@ -51,6 +51,7 @@ export default {
       numberDivide: null,
       numberPlus: null,
       numberMinus: null,
+      clearButton: 'AC',
       checkEquals: 0
     }
   },
@@ -64,11 +65,14 @@ export default {
     },
 
     clear() {
-      this.inputValue = ''
-      this.numberMultiply = null
-      this.numberDivide = null
-      this.numberPlus = null
-      this.numberMinus = null
+      if (this.clearButton === 'C') {
+        this.inputValue = ''
+      } else {
+        this.numberMultiply = null
+        this.numberDivide = null
+        this.numberPlus = null
+        this.numberMinus = null
+      }
     },
 
     multiply() {
@@ -114,7 +118,7 @@ export default {
       this.checkEquals++
     },
 
-    changeSign () {
+    changeSign() {
       if (this.inputValue > 0) {
         this.inputValue = `-${this.inputValue}`
 
@@ -123,16 +127,22 @@ export default {
       }
     },
 
-    percent () {
-      this.numberMultiply !== null ? this.inputValue = +this.numberMultiply /100 * this.inputValue
-        : this.numberDivide !== null ? this.inputValue = +this.numberDivide /100 * +this.inputValue
-        : this.numberPlus !== null ? this.inputValue = +this.numberPlus /100 * +this.inputValue
-        : this.numberMinus !== null ? this.inputValue = +this.numberMinus /100 * +this.inputValue
-        : this.inputValue = this.inputValue / 100
+    percent() {
+      this.numberMultiply !== null ? this.inputValue = +this.numberMultiply / 100 * this.inputValue
+          : this.numberDivide !== null ? this.inputValue = +this.numberDivide / 100 * +this.inputValue
+          : this.numberPlus !== null ? this.inputValue = +this.numberPlus / 100 * +this.inputValue
+              : this.numberMinus !== null ? this.inputValue = +this.numberMinus / 100 * +this.inputValue
+                  : this.inputValue = this.inputValue / 100
     },
 
-    backspace () {
-      this.inputValue = [...`${this.inputValue}`].slice(0, [].length-1).join('')
+    backspace() {
+      this.inputValue = [...`${this.inputValue}`].slice(0, [].length - 1).join('')
+    }
+  },
+
+  watch: {
+    inputValue() {
+      this.inputValue === '' ? this.clearButton = 'AC' : this.clearButton = 'C'
     }
   }
 }
