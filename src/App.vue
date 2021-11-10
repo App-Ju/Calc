@@ -29,7 +29,7 @@
         <button data-plus="true">+</button>
       </div>
       <div class="line">
-        <button data-del="true"><</button>
+        <button data-del="true">&lt;</button>
         <button data-num="true">0</button>
         <button data-comma="true">,</button>
         <button data-equals="true">=</button>
@@ -53,4 +53,4 @@ export default {
 }
 </script>
 
-<style src="app.css"></style>
+<style src="./app.css"></style>
