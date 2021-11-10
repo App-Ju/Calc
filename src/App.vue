@@ -9,7 +9,7 @@
       <div class="line">
         <button @click="clear">AC</button>
         <button @click="changeSign">+/-</button>
-        <button>%</button>
+        <button @click="percent">%</button>
         <button @click="divide">/</button>
       </div>
       <div class="line">
@@ -124,8 +124,16 @@ export default {
       } else if (this.inputValue < 0) {
         this.inputValue = [...`${this.inputValue}`].filter(e => e !== '-').join('')
       }
+    },
+
+    percent () {
+      this.numberMultiply !== null ? this.inputValue = +this.numberMultiply /100 * this.inputValue
+        : this.numberDivide !== null ? this.inputValue = +this.numberDivide /100 * +this.inputValue
+        : this.numberPlus !== null ? this.inputValue = +this.numberPlus /100 * +this.inputValue
+        : this.numberMinus !== null ? this.inputValue = +this.numberMinus /100 * +this.inputValue
+        : this.inputValue = this.inputValue / 100
     }
-  },
+  }
 }
 </script>
 
