@@ -32,12 +32,14 @@
 
         <button @click="backspace">&lt;</button>
         <button @click="addNumber">0</button>
-        <button @click="">.</button>
+        <button @click="conLog">.</button>
         <button @click="equals">=</button>
       </div>
     </div>
     <div v-show="history" class="hist">
-
+      <ul class="list">
+        <li v-for="item in historyArr" class="list-item">{{ item }}</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -76,27 +78,36 @@ export default {
         this.numberDivide = null
         this.numberPlus = null
         this.numberMinus = null
+        this.historyArr = []
       }
     },
 
     multiply() {
       this.equals()
       this.numberMultiply = this.inputValue
+      this.checkEquals++
+      this.conLog()
     },
 
     divide() {
       this.equals()
       this.numberDivide = this.inputValue
+      this.checkEquals++
+      this.conLog()
     },
 
     plus() {
       this.equals()
       this.numberPlus = this.inputValue
+      this.checkEquals++
+      this.conLog()
     },
 
     minus() {
       this.equals()
       this.numberMinus = this.inputValue
+      this.checkEquals++
+      this.conLog()
     },
 
     equals() {
@@ -119,6 +130,7 @@ export default {
         this.inputValue = +this.numberMinus - +this.inputValue
         this.numberMinus = null
       }
+      this.historyArr.unshift(this.inputValue)
       this.checkEquals++
     },
 
@@ -145,6 +157,10 @@ export default {
 
     show() {
       this.history ? this.history = '' : this.history = 1
+    },
+
+    conLog() {
+      console.log('*=', this.numberMultiply, '/=', this.numberDivide, '+=', this.numberPlus, '-=', this.numberMinus)
     }
   },
 

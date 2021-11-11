@@ -12,19 +12,22 @@
     right: calc(50vw - 7.5rem);
     width: 15rem;
     height: 24.5rem;
-    margin: 1rem 0.1rem 0 auto;
+    margin: 1rem 0 0 auto;
     border-style: solid;
     border-radius: 1rem;
 }
 
 .hist {
     position: absolute;
-    left: calc(50vw + 7.6rem);
-    width: 10rem;
+    left: calc(50vw + 7.7rem);
+    width: auto;
+    min-width: 6rem;
     height: 24.5rem;
     margin: 1rem auto 0 0;
     border-style: solid;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 #keyboard {
@@ -57,4 +60,13 @@ input {
 
 .hide {
     display: none;
+}
+
+.list {
+    margin: 0;
+    padding: 1rem;
+    list-style: none;
+    text-align: right;
+    font-size: 0.9rem;
+    font-family: Calibri, sans-serif;
 }
