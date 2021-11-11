@@ -1,41 +1,43 @@
 <template>
   <div class="app">
-    <label>
-      <input
-          v-model='inputValue'
-          type="number">
-    </label>
-    <div id="keyboard">
-      <div class="line">
+    <div class="calc">
+      <label>
+        <input
+            v-model='inputValue'
+            type="number">
+      </label>
+      <div id="keyboard">
+        <button class="adv" disabled>Advenced</button>
+        <button @click="show" class="adv">History</button>
+
         <button @click="clear"> {{ clearButton }}</button>
         <button @click="changeSign">+/-</button>
         <button @click="percent">%</button>
         <button @click="divide">/</button>
-      </div>
-      <div class="line">
+
         <button @click="addNumber">7</button>
         <button @click="addNumber">8</button>
         <button @click="addNumber">9</button>
         <button @click="multiply">*</button>
-      </div>
-      <div class="line">
+
         <button @click="addNumber">4</button>
         <button @click="addNumber">5</button>
         <button @click="addNumber">6</button>
         <button @click="minus">-</button>
-      </div>
-      <div class="line">
+
         <button @click="addNumber">1</button>
         <button @click="addNumber">2</button>
         <button @click="addNumber">3</button>
         <button @click="plus">+</button>
-      </div>
-      <div class="line">
+
         <button @click="backspace">&lt;</button>
         <button @click="addNumber">0</button>
-        <button @click="comma">.</button>
+        <button @click="">.</button>
         <button @click="equals">=</button>
       </div>
+    </div>
+    <div v-show="history" class="hist">
+
     </div>
   </div>
 </template>
@@ -52,7 +54,9 @@ export default {
       numberPlus: null,
       numberMinus: null,
       clearButton: 'AC',
-      checkEquals: 0
+      checkEquals: 0,
+      history: '',
+      historyArr: []
     }
   },
   methods: {
@@ -137,6 +141,10 @@ export default {
 
     backspace() {
       this.inputValue = [...`${this.inputValue}`].slice(0, [].length - 1).join('')
+    },
+
+    show() {
+      this.history ? this.history = '' : this.history = 1
     }
   },
 
