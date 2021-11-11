@@ -156,7 +156,4 @@ export default {
 </script>
 
 <style src="./app.css"></style>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
+
