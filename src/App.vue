@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div id="app">
     <div class="calc">
       <label>
         <input
@@ -32,21 +32,24 @@
 
         <button @click="backspace">&lt;</button>
         <button @click="addNumber">0</button>
-        <button @click="conLog">.</button>
+        <button-key @zhmyak="conLog" :value="'dot'"></button-key>
         <button @click="equals">=</button>
       </div>
     </div>
     <div v-show="history" class="hist">
       <ul class="list">
-        <li v-for="item in historyArr" class="list-item">{{ item }}</li>
+        <li v-for="(item, idx) in historyArr" :key="idx" class="list-item">{{ item }}</li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import ButtonKey from './components/ButtonKey.vue';
+
 export default {
-  name: 'App',
+  components: { ButtonKey },
+
   data() {
     return {
       inputValue: '',
