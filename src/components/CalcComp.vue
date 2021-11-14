@@ -67,10 +67,19 @@ export default {
 
         case '.':
           const i = this.addedNumbers.join('') + '.'
-          if (eval(i) || this.displayValue === '0') {
+          if (this.displayValue === '') {
+            this.addedNumbers = [0, '.']
+          }else if (eval(i) || this.displayValue === '0') {
             this.addedNumbers.push(btnValue)
           }
           break;
+
+        case '%':
+          if (!isNaN(this.displayValue)) {
+            this.addedNumbers = [+this.displayValue/100]
+          }
+          break;
+
       }
     }
   },
