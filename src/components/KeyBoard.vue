@@ -1,7 +1,7 @@
 <template>
   <div class="keyboard">
     <button-key
-        v-for="(btnValue, idx) in buttons"
+        v-for="(btnValue) in buttons"
         :key="btnValue.name"
         :value="btnValue"
         @zhmyak="$emit('zhmyak', btnValue)"
@@ -26,9 +26,7 @@ export default {
     }
   },
   methods: {
-    addNumber(item) {
-      this.inputValue += item
-    },
+
   }
 }
 

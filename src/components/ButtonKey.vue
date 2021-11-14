@@ -1,5 +1,8 @@
 <template>
-  <button @click.stop="$emit('zhmyak', value)" class="button">{{ value }}</button>
+  <button
+      @click.stop="$emit('zhmyak', value)"
+      class="button"
+  >{{ value }}</button>
 </template>
 
 <script>

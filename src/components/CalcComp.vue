@@ -1,7 +1,7 @@
 <template>
   <div class="calc">
-    <display-comp :disp="displayValue.join('')"></display-comp>
-    <key-board @zhmyak="addNumber"></key-board>
+    <display-comp :disp="displayValue"></display-comp>
+    <key-board @zhmyak="zhmyak"></key-board>
   </div>
 </template>
 
@@ -15,20 +15,52 @@ export default {
 
   data() {
     return {
-      displayValue: [],
-      calcValue: ''
+      getSign: ['+', '-', '*', '/'],
+      getNumber: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+      addedNumbers: [],
+      equalsCount: 0
     }
   },
 
   methods: {
-    addNumber(btnValue) {
-      if (!isNaN(Number(btnValue)) || btnValue === '*' || btnValue === '/' || btnValue === '+' || btnValue === '-') {
-        this.displayValue.push(btnValue)
+    zhmyak(btnValue) {
+      switch (btnValue) {
+        case "=":
+          this.equalsCount++
+          console.log("It's alive ->", btnValue)
+          break;
+
+        case `${this.getNumber.find(e => e === btnValue)}`:
+          this.addedNumbers.push(btnValue)
+          break;
+
+        case `${this.getSign.find(e => e === btnValue)}`:
+          if (isNaN(+this.addedNumbers.slice(-1))) {
+            this.addedNumbers.splice(-1, 1)
+            this.addedNumbers.push(btnValue)
+
+          } else {
+            this.addedNumbers.push(btnValue)
+          }
+          break;
       }
-      console.log('awesome', btnValue, this.displayValue)
+    }
+  },
+
+  computed: {
+    displayValue() {
+      return this.addedNumbers.join('')
+    },
+  },
+
+  watch: {
+    equalsCount() {
+      const i = (eval(this.displayValue))
+      this.addedNumbers = []
+      this.addedNumbers.push(i)
+      this.equalsCount = 0
     },
   }
-
 }
 </script>
 
