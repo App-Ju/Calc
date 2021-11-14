@@ -36,7 +36,7 @@ export default {
           break;
 
         case `${this.getNumber.find(e => e === btnValue)}`:
-          if (this.equalsCheck === true) {
+          if (this.equalsCheck === true || this.displayValue === '0') {
             this.addedNumbers = []
             this.equalsCheck = false
             this.addedNumbers.push(btnValue)
@@ -67,7 +67,7 @@ export default {
 
         case '.':
           const i = this.addedNumbers.join('') + '.'
-          if (eval(i)) {
+          if (eval(i) || this.displayValue === '0') {
             this.addedNumbers.push(btnValue)
           }
           break;
