@@ -66,11 +66,11 @@ export default {
           break;
 
         case '.':
-          const i = this.addedNumbers.join('') + '.'
+          const dotVar = this.addedNumbers.join('') + '.'
           if (this.displayValue === '') {
             this.addedNumbers = [0, '.']
-          }else if (eval(i) || this.displayValue === '0') {
-            this.addedNumbers.push(btnValue)
+                }else if (eval(dotVar) || this.displayValue === '0') {
+                  this.addedNumbers.push(btnValue)
           }
           break;
 
@@ -80,6 +80,13 @@ export default {
           }
           break;
 
+        case '+/-':
+          if (!isNaN(this.displayValue.split('').shift())) {
+            this.addedNumbers.unshift('-')
+          } else {
+            this.addedNumbers.shift()
+          }
+          break;
       }
     }
   },
