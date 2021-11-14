@@ -23,5 +23,6 @@ export default {
   margin: 0.13rem;
   border-style: solid;
   border-radius: 1rem;
+  background: #abb7b7;
 }
 </style>

@@ -70,9 +70,10 @@ export default {
   position: absolute;
   right: calc(50vw - 7.5rem);
   width: 15rem;
-  height: 24.5rem;
+  height: 23rem;
   margin: 1rem 0 0 auto;
   border-style: solid;
   border-radius: 1rem;
+  background: #9b9fa1;
 }
 </style>

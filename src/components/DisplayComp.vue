@@ -19,11 +19,12 @@ export default {
   display: block;
   width: 14rem;
   height: 3.5rem;
-  margin: 0.3rem auto 1rem auto;
+  margin: 0.5rem auto 1.5rem auto;
   border-style: solid;
   border-radius: 0.6rem;
   text-align: right;
   padding-top: 0.9rem;
   padding-right: 0.3rem;
+  background: #eaebee;
 }
 </style>
