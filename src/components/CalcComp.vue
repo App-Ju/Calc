@@ -18,28 +18,56 @@ export default {
       getSign: ['+', '-', '*', '/'],
       getNumber: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
       addedNumbers: [],
-      equalsCount: 0
+      equalsCheck: false    // за ним следит вочер
     }
   },
 
   methods: {
     zhmyak(btnValue) {
       switch (btnValue) {
+
         case "=":
-          this.equalsCount++
-          console.log("It's alive ->", btnValue)
+          if (isNaN(+this.addedNumbers.slice(-1))) {
+            this.addedNumbers.splice(-1, 1)
+            this.equalsCheck = true
+                } else {
+                  this.equalsCheck = true
+          }
           break;
 
         case `${this.getNumber.find(e => e === btnValue)}`:
-          this.addedNumbers.push(btnValue)
+          if (this.equalsCheck === true) {
+            this.addedNumbers = []
+            this.equalsCheck = false
+            this.addedNumbers.push(btnValue)
+                } else {
+                  this.addedNumbers.push(btnValue)
+          }
           break;
 
         case `${this.getSign.find(e => e === btnValue)}`:
           if (isNaN(+this.addedNumbers.slice(-1))) {
+            this.equalsCheck = false
             this.addedNumbers.splice(-1, 1)
             this.addedNumbers.push(btnValue)
+                } else {
+                  this.equalsCheck = false
+                  this.addedNumbers.push(btnValue)
+          }
+          break;
 
-          } else {
+        case 'AC':
+          this.addedNumbers = []
+          this.equalsCheck = false
+          break;
+
+        case '<':
+          this.addedNumbers.splice(-1)
+          break;
+
+        case '.':
+          const i = this.addedNumbers.join('') + '.'
+          if (eval(i)) {
             this.addedNumbers.push(btnValue)
           }
           break;
@@ -54,11 +82,10 @@ export default {
   },
 
   watch: {
-    equalsCount() {
+    equalsCheck() {
       const i = (eval(this.displayValue))
       this.addedNumbers = []
       this.addedNumbers.push(i)
-      this.equalsCount = 0
     },
   }
 }
