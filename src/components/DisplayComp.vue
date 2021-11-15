@@ -19,7 +19,7 @@ export default {
   display: block;
   width: 14rem;
   height: 3.5rem;
-  margin: 0.5rem auto 1.5rem auto;
+  margin: 0.5rem auto 1rem auto;
   border-style: solid;
   border-radius: 0.6rem;
   text-align: right;

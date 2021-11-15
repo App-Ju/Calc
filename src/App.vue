@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <calc-comp></calc-comp>
   </div>
 </template>
@@ -16,13 +16,11 @@ export default {
 </script>
 
 <style>
-* {
+.app {
+  display: inline-flex;
   box-sizing: border-box;
   font-size: 1.1rem;
-}
-
-#app {
-  display: inline-flex;
+  font-family: "Helvetica Neue", Calibri, sans-serif;
 }
 </style>
 

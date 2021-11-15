@@ -2,9 +2,15 @@
   <div>
     <div class="calc">
       <display-comp :disp="displayValue"></display-comp>
-      <key-board @zhmyak="zhmyak"></key-board>
+      <key-board
+          @zhmyak="zhmyak"
+          @showHistory="showHistory"
+      ></key-board>
     </div>
-    <history-comp :historyData="historyData" ></history-comp>
+    <history-comp
+        :historyData="historyData"
+        :Visibility="historyVisibility"
+    ></history-comp>
   </div>
 </template>
 
@@ -22,8 +28,9 @@ export default {
       getSign: ['+', '-', '*', '/'],
       getNumber: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
       addedNumbers: [],
-      equalsCheck: false,    // за ним следит вочер
-      historyData: []
+      equalsCheck: false,
+      historyData: [],
+      historyVisibility: false
     }
   },
 
@@ -101,13 +108,18 @@ export default {
           }
           break;
       }
+    },
+    showHistory() {
+      this.historyVisibility = !this.historyVisibility;
+      console.log(this.historyVisibility)
     }
+
   },
 
   computed: {
     displayValue() {
       return this.addedNumbers.join('')
-    },
+    }
   },
 
   watch: {
@@ -118,7 +130,6 @@ export default {
         this.addedNumbers = []
         this.addedNumbers.push(sum)
         this.historyData.unshift(`= ${this.displayValue}`)
-        console.log(this.historyData)
       }
     },
   }
@@ -131,10 +142,11 @@ export default {
   position: absolute;
   right: calc(50vw - 7.5rem);
   width: 15rem;
-  height: 23rem;
+  height: 24.5rem;
   margin: 1rem 0 0 auto;
   border-style: solid;
   border-radius: 1rem;
   background: #9b9fa1;
+  font-family: "Helvetica Neue", Calibri, sans-serif;
 }
 </style>
