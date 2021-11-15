@@ -3,11 +3,15 @@
     <div class="inputDiv">
       <input
           @change="$emit('showHistory')"
-          type="checkbox" id="History" name="HistoryName" class="input">
+          type="checkbox" id="History" name="HistoryName" class="input"
+      >
       <lebel for="History">History</lebel>
     </div>
     <div class="inputDiv">
-      <input type="checkbox" id="Adv" name="AdvName" class="input" disabled>
+      <input
+          @change="$emit('showAdvanced')"
+          type="checkbox" id="Adv" name="AdvName" class="input"
+      >
       <lebel for="Adv">Advanced</lebel>
     </div>
     <button-key

@@ -8,10 +8,11 @@
 import DisplayComp from '@/components/DisplayComp.vue';
 import HistoryComp from '@/components/HistoryComp.vue';
 import KeyBoard from '@/components/KeyBoard.vue';
-import CalcComp from "@/components/CalcComp";
+import CalcComp from "@/components/CalcComp.vue";
+import AdvancedKeyboard from "@/components/AdvancedKeyboard.vue";
 
 export default {
-  components: {CalcComp, KeyBoard, DisplayComp, HistoryComp},
+  components: {CalcComp, KeyBoard, DisplayComp, HistoryComp, AdvancedKeyboard},
 }
 </script>
 

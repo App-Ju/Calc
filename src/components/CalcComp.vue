@@ -1,12 +1,19 @@
 <template>
   <div>
+    <advanced-keyboard
+        :advVisibility="advancedVisibility"
+    ></advanced-keyboard>
+
     <div class="calc">
       <display-comp :disp="displayValue"></display-comp>
+
       <key-board
           @zhmyak="zhmyak"
           @showHistory="showHistory"
+          @showAdvanced="showAdvanced"
       ></key-board>
     </div>
+
     <history-comp
         :historyData="historyData"
         :Visibility="historyVisibility"
@@ -17,11 +24,12 @@
 <script>
 import KeyBoard from './KeyBoard.vue';
 import DisplayComp from './DisplayComp.vue';
-import HistoryComp from './HistoryComp';
+import HistoryComp from './HistoryComp.vue';
+import AdvancedKeyboard from './AdvancedKeyboard.vue';
 
 export default {
   name: "CalcComp",
-  components: {HistoryComp, KeyBoard, DisplayComp},
+  components: {AdvancedKeyboard, HistoryComp, KeyBoard, DisplayComp},
 
   data() {
     return {
@@ -30,7 +38,8 @@ export default {
       addedNumbers: [],
       equalsCheck: false,
       historyData: [],
-      historyVisibility: false
+      historyVisibility: false,
+      advancedVisibility: false
     }
   },
 
@@ -109,11 +118,14 @@ export default {
           break;
       }
     },
+
     showHistory() {
       this.historyVisibility = !this.historyVisibility;
-      console.log(this.historyVisibility)
-    }
+    },
 
+    showAdvanced() {
+      this.advancedVisibility = !this.advancedVisibility;
+    }
   },
 
   computed: {
