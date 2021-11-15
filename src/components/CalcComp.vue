@@ -1,24 +1,29 @@
 <template>
-  <div class="calc">
-    <display-comp :disp="displayValue"></display-comp>
-    <key-board @zhmyak="zhmyak"></key-board>
+  <div>
+    <div class="calc">
+      <display-comp :disp="displayValue"></display-comp>
+      <key-board @zhmyak="zhmyak"></key-board>
+    </div>
+    <history-comp :historyData="historyData" ></history-comp>
   </div>
 </template>
 
 <script>
 import KeyBoard from './KeyBoard.vue';
 import DisplayComp from './DisplayComp.vue';
+import HistoryComp from './HistoryComp';
 
 export default {
   name: "CalcComp",
-  components: {KeyBoard, DisplayComp},
+  components: {HistoryComp, KeyBoard, DisplayComp},
 
   data() {
     return {
       getSign: ['+', '-', '*', '/'],
       getNumber: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
       addedNumbers: [],
-      equalsCheck: false    // за ним следит вочер
+      equalsCheck: false,    // за ним следит вочер
+      historyData: []
     }
   },
 
@@ -108,9 +113,12 @@ export default {
   watch: {
     equalsCheck() {
       if (this.equalsCheck) {
-        const i = (eval(this.displayValue))
+        this.historyData.unshift(this.displayValue)
+        const sum = (eval(this.displayValue))
         this.addedNumbers = []
-        this.addedNumbers.push(i)
+        this.addedNumbers.push(sum)
+        this.historyData.unshift(`= ${this.displayValue}`)
+        console.log(this.historyData)
       }
     },
   }
