@@ -62,14 +62,16 @@ export default {
           break;
 
         case '<':
-          this.addedNumbers.splice(-1)
+          if (this.equalsCheck === false) {
+            this.addedNumbers.splice(-1)
+          }
           break;
 
         case '.':
           const dotVar = this.addedNumbers.join('') + '.'
           if (this.displayValue === '') {
             this.addedNumbers = [0, '.']
-                }else if (eval(dotVar) || this.displayValue === '0') {
+                } else if (eval(dotVar) || this.displayValue === '0') {
                   this.addedNumbers.push(btnValue)
           }
           break;
@@ -83,8 +85,8 @@ export default {
         case '+/-':
           if (!isNaN(this.displayValue.split('').shift())) {
             this.addedNumbers.unshift('-')
-          } else {
-            this.addedNumbers.shift()
+                } else {
+                  this.addedNumbers.shift()
           }
           break;
       }
