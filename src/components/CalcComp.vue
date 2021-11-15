@@ -99,9 +99,11 @@ export default {
 
   watch: {
     equalsCheck() {
-      const i = (eval(this.displayValue))
-      this.addedNumbers = []
-      this.addedNumbers.push(i)
+      if (this.equalsCheck) {
+        const i = (eval(this.displayValue))
+        this.addedNumbers = []
+        this.addedNumbers.push(i)
+      }
     },
   }
 }
