@@ -30,8 +30,9 @@ export default {
           if (isNaN(+this.addedNumbers.slice(-1))) {
             this.addedNumbers.splice(-1, 1)
             this.equalsCheck = true
-                } else {
-                  this.equalsCheck = true
+
+          } else {
+            this.equalsCheck = true
           }
           break;
 
@@ -40,8 +41,9 @@ export default {
             this.addedNumbers = []
             this.equalsCheck = false
             this.addedNumbers.push(btnValue)
-                } else {
-                  this.addedNumbers.push(btnValue)
+
+          } else {
+            this.addedNumbers.push(btnValue)
           }
           break;
 
@@ -50,9 +52,10 @@ export default {
             this.equalsCheck = false
             this.addedNumbers.splice(-1, 1)
             this.addedNumbers.push(btnValue)
-                } else {
-                  this.equalsCheck = false
-                  this.addedNumbers.push(btnValue)
+
+          } else {
+            this.equalsCheck = false
+            this.addedNumbers.push(btnValue)
           }
           break;
 
@@ -71,22 +74,25 @@ export default {
           const dotVar = this.addedNumbers.join('') + '.'
           if (this.displayValue === '') {
             this.addedNumbers = [0, '.']
-                } else if (eval(dotVar) || this.displayValue === '0') {
-                  this.addedNumbers.push(btnValue)
+
+          } else if ((eval(dotVar) && this.equalsCheck === false)
+              || (this.displayValue === '0' && this.equalsCheck === false)) {
+            this.addedNumbers.push(btnValue)
           }
           break;
 
         case '%':
           if (!isNaN(this.displayValue)) {
-            this.addedNumbers = [+this.displayValue/100]
+            this.addedNumbers = [+this.displayValue / 100]
           }
           break;
 
         case '+/-':
           if (!isNaN(this.displayValue.split('').shift())) {
             this.addedNumbers.unshift('-')
-                } else {
-                  this.addedNumbers.shift()
+
+          } else {
+            this.addedNumbers.shift()
           }
           break;
       }
