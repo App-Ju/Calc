@@ -1,8 +1,8 @@
 <template>
   <div class="advKeyboard" :class="displayAdvanced">
     <button-key
-        v-for="(advBtnValue) in advButtons"
-        :key="advBtnValue.name"
+        v-for="(advBtnValue, key) in advButtons"
+        :key="key"
         :value="advBtnValue"
         @zhmyak="$emit('zhmyak', advBtnValue)"
         class="btn"
@@ -15,15 +15,34 @@ import ButtonKey from './ButtonKey.vue'
 
 export default {
   name: "AdvancedKeyboard",
-  components: {ButtonKey},
+  components: {
+    ButtonKey
+  },
+
   props: {
     advVisibility: {type: Boolean, required: true}
   },
 
   data() {
     return {
-      advButtons: ['mc', 'm+', 'm-', 'mr', 'x2', 'x3', 'xy', '10x',
-        '1/x', '2x', '3x', 'yx', 'x!', 'e', 'ex', 'п']
+      advButtons: [
+        'mc',
+        'm+',
+        'm-',
+        'mr',
+        'x2',
+        'x3',
+        'xy',
+        '10x',
+        '1/x',
+        '2x',
+        '3x',
+        'yx',
+        'x!',
+        'e',
+        'ex',
+        'п'
+      ]
     }
   },
 

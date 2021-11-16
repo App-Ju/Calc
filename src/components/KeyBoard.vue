@@ -1,25 +1,28 @@
 <template xmlns="">
   <div class="keyboard">
+
     <div class="inputDiv">
       <input
-          @change="$emit('showHistory')"
+          @change="$emit('switchHistoryVisibility')"
           type="checkbox" id="History" name="HistoryName" class="input"
       >
-      <lebel for="History">History</lebel>
+      <label for="History">History</label>
     </div>
     <div class="inputDiv">
       <input
-          @change="$emit('showAdvanced')"
+          @change="$emit('switchAdvancedVisibility')"
           type="checkbox" id="Adv" name="AdvName" class="input"
       >
-      <lebel for="Adv">Advanced</lebel>
+      <label for="Adv">Advanced</label>
     </div>
+
     <button-key
-        v-for="(btnValue) in buttons"
-        :key="btnValue.name"
+        v-for="(btnValue, key) in buttons"
+        :key="key"
         :value="btnValue"
         @zhmyak="$emit('zhmyak', btnValue)"
-    ></button-key>
+    />
+
   </div>
 </template>
 
@@ -28,12 +31,33 @@ import ButtonKey from './ButtonKey.vue'
 
 export default {
   name: 'KeyBoard',
-  components: {ButtonKey},
+  components: {
+    ButtonKey
+  },
 
   data() {
     return {
-      buttons: ['AC', '+/-', '%', '/', '7', '8', '9', '*', '4', '5',
-        '6', '-', '1', '2', '3', '+', '<', '0', '.', '=']
+      buttons: [
+        'AC',
+        '+/-',
+        '%',
+        '/',
+        '7',
+        '8',
+        '9',
+        '*',
+        '4',
+        '5',
+        '6',
+        '-',
+        '1',
+        '2',
+        '3',
+        '+',
+        '<',
+        '0',
+        '.',
+        '=']
     }
   }
 }

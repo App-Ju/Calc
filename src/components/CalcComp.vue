@@ -2,22 +2,22 @@
   <div>
     <advanced-keyboard
         :advVisibility="advancedVisibility"
-    ></advanced-keyboard>
+    />
 
     <div class="calc">
-      <display-comp :disp="displayValue"></display-comp>
+      <display-comp :disp="displayValue"/>
 
       <key-board
           @zhmyak="zhmyak"
-          @showHistory="showHistory"
-          @showAdvanced="showAdvanced"
-      ></key-board>
+          @switchHistoryVisibility="showHistory"
+          @switchAdvancedVisibility="showAdvanced"
+      />
     </div>
 
     <history-comp
         :historyData="historyData"
-        :Visibility="historyVisibility"
-    ></history-comp>
+        :visibility="historyVisibility"
+    />
   </div>
 </template>
 
@@ -27,14 +27,20 @@ import DisplayComp from './DisplayComp.vue';
 import HistoryComp from './HistoryComp.vue';
 import AdvancedKeyboard from './AdvancedKeyboard.vue';
 
+const getSign = ['+', '-', '*', '/']
+const getNumber = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+
 export default {
   name: "CalcComp",
-  components: {AdvancedKeyboard, HistoryComp, KeyBoard, DisplayComp},
+  components: {
+    AdvancedKeyboard,
+    HistoryComp,
+    KeyBoard,
+    DisplayComp
+  },
 
   data() {
     return {
-      getSign: ['+', '-', '*', '/'],
-      getNumber: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
       addedNumbers: [],
       equalsCheck: false,
       historyData: [],
@@ -57,7 +63,7 @@ export default {
           }
           break;
 
-        case `${this.getNumber.find(e => e === btnValue)}`:
+        case `${getNumber.find(e => e === btnValue)}`:
           if (this.equalsCheck === true || this.displayValue === '0') {
             this.addedNumbers = []
             this.equalsCheck = false
@@ -68,7 +74,7 @@ export default {
           }
           break;
 
-        case `${this.getSign.find(e => e === btnValue)}`:
+        case `${getSign.find(e => e === btnValue)}`:
           if (isNaN(+this.addedNumbers.slice(-1))) {
             this.equalsCheck = false
             this.addedNumbers.splice(-1, 1)

@@ -10,13 +10,13 @@ export default {
   name: "HistoryComp",
   props: {
     historyData: {type: Array, required: true},
-    Visibility: {type: Boolean, required: true}
+    visibility: {type: Boolean, required: true}
   },
   computed: {
     displayHistory() {
       return {
-        show: this.Visibility,
-        hide: !this.Visibility
+        show: this.visibility,
+        hide: !this.visibility
       }
     }
   }
